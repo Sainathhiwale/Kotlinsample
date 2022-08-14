@@ -10,7 +10,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-
+// Diffutil receyvlerview is sample code is adding..
 class MainActivity : AppCompatActivity() {
     private val MY_PERMISSIONS_REQUEST_WRITE_FILE = 101
     private val MY_PERMISSIONS_REQUEST_CAMERA = 102
