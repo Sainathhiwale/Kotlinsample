@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.examen.kotlinpresmissionn.adapter.UserAdapter
 import com.examen.kotlinpresmissionn.model.Users
-
+//https://howtodoandroid.com/update-android-recyclerview-using-diffutil/
 class RecyclerviewDiffutilActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var users: List<Users>
     private val TAG = "RecyclerviewDiffutilActivity"
