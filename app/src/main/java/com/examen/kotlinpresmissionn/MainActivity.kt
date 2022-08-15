@@ -1,30 +1,36 @@
 package com.examen.kotlinpresmissionn
 
 import android.Manifest
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 // Diffutil receyvlerview is sample code is adding..
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val MY_PERMISSIONS_REQUEST_WRITE_FILE = 101
     private val MY_PERMISSIONS_REQUEST_CAMERA = 102
     private val TAG = "MainActivity"
+    private lateinit var btNext:Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
+        btNext = findViewById(R.id.btNext)
+        btNext.setOnClickListener(this)
         initPremission();
     }
 
     private fun initPremission() {
         if (checkPremission(Manifest.permission.CAMERA)){
          Log.d(TAG,"Granted Premission")
+
         }else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)){
@@ -61,6 +67,7 @@ class MainActivity : AppCompatActivity() {
         if (requestCode == MY_PERMISSIONS_REQUEST_CAMERA) {
             if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "premission granted!", Toast.LENGTH_LONG).show()
+
             }else {
                // ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA),MY_PERMISSIONS_REQUEST_CAMERA)
 
@@ -69,6 +76,15 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+    }
+
+    override fun onClick(view: View?) {
+        if (view?.id ==R.id.btNext){
+            val intent = Intent(this,RecyclerviewDiffutilActivity::class.java)
+            intent.putExtra("data","sample test")
+            intent.putExtra("info","sample info test")
+            startActivity(intent)
+        }
     }
 }
 
