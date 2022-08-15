@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_main)
         btNext = findViewById(R.id.btNext)
         btNext.setOnClickListener(this)
-        initPremission();
+        initPremission()
     }
 
     private fun initPremission() {

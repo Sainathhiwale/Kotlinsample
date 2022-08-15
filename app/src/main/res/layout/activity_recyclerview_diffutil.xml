@@ -14,6 +14,24 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="10dp"/>
+
+    <Button
+        android:id="@+id/btSortAscending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sort Ascending"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rview"/>
+
+    <Button
+        android:id="@+id/btSortdescending"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Sort descending"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btSortAscending"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
