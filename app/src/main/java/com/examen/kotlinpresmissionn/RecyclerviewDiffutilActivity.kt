@@ -3,12 +3,16 @@ package com.examen.kotlinpresmissionn
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Parcel
+import android.os.Parcelable
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.examen.kotlinpresmissionn.adapter.UserAdapter
+import com.examen.kotlinpresmissionn.model.Blog
+import com.examen.kotlinpresmissionn.model.Student
 import com.examen.kotlinpresmissionn.model.Users
 import com.examen.kotlinpresmissionn.ui.ParseSerializableActivity
 
@@ -19,8 +23,12 @@ class RecyclerviewDiffutilActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var rview:RecyclerView
     private lateinit var btSortAscending:Button
     private lateinit var btSortdescending:Button
-    private lateinit var btParseActivity:Button
+    private lateinit var btIntentActivity:Button
+    private lateinit var btParcelable:Button
+    private lateinit var btSerializable:Button
     private lateinit var sortedList:List<Users>
+
+
 
     private lateinit var layoutManager: LinearLayoutManager
 
@@ -36,14 +44,18 @@ class RecyclerviewDiffutilActivity : AppCompatActivity(), View.OnClickListener {
         rview = findViewById(R.id.rview)
         btSortAscending = findViewById(R.id.btSortAscending)
         btSortdescending = findViewById(R.id.btSortdescending)
-        btParseActivity = findViewById(R.id.btParseActivity)
+        btIntentActivity = findViewById(R.id.btIntentActivity)
+        btParcelable = findViewById(R.id.btParcelable)
+        btSerializable = findViewById(R.id.btSerializable)
         initList()
         initListener();
     }
     private fun initListener(){
         btSortAscending.setOnClickListener(this)
         btSortdescending.setOnClickListener(this)
-        btParseActivity.setOnClickListener(this)
+        btIntentActivity.setOnClickListener(this)
+        btParcelable.setOnClickListener(this)
+        btSerializable.setOnClickListener(this)
     }
     private fun initList(){
          users = listOf<Users>(
@@ -66,9 +78,21 @@ class RecyclerviewDiffutilActivity : AppCompatActivity(), View.OnClickListener {
            R.id.btSortdescending->{
              sortDescnding()
            }
-           R.id.btParseActivity ->{
+           R.id.btIntentActivity ->{
                val intent = Intent(this,ParseSerializableActivity::class.java)
                intent.putExtra("keyString", "Androidly String data")
+               startActivity(intent)
+           }
+           R.id.btParcelable ->{
+               val student = Student(1,"sainath","pune","9518788067")
+               val intent = Intent(this,ParseSerializableActivity::class.java)
+               intent.putExtra("studentData", student)
+               startActivity(intent)
+           }
+           R.id.btSerializable ->{
+               val blog = Blog()
+               val intent = Intent(this,ParseSerializableActivity::class.java)
+               intent.putExtra("blogdata", blog )
                startActivity(intent)
            }
        }

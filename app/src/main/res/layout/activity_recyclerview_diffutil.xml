@@ -35,12 +35,30 @@
         app:layout_constraintTop_toBottomOf="@+id/btSortAscending"/>
 
     <Button
-        android:id="@+id/btParseActivity"
+        android:id="@+id/btIntentActivity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Parcelable serializable"
+        android:text="Pass Data By Intent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btSortdescending"/>
+
+    <Button
+        android:id="@+id/btParcelable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Parcelable "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btIntentActivity"/>
+
+    <Button
+        android:id="@+id/btSerializable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Serializable  "
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btParcelable"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
