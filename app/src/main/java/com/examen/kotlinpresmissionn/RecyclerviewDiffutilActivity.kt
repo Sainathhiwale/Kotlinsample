@@ -1,5 +1,6 @@
 package com.examen.kotlinpresmissionn
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.examen.kotlinpresmissionn.adapter.UserAdapter
 import com.examen.kotlinpresmissionn.model.Users
+import com.examen.kotlinpresmissionn.ui.ParseSerializableActivity
+
 //https://howtodoandroid.com/update-android-recyclerview-using-diffutil/
 class RecyclerviewDiffutilActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var users: List<Users>
@@ -16,6 +19,7 @@ class RecyclerviewDiffutilActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var rview:RecyclerView
     private lateinit var btSortAscending:Button
     private lateinit var btSortdescending:Button
+    private lateinit var btParseActivity:Button
     private lateinit var sortedList:List<Users>
 
     private lateinit var layoutManager: LinearLayoutManager
@@ -32,12 +36,14 @@ class RecyclerviewDiffutilActivity : AppCompatActivity(), View.OnClickListener {
         rview = findViewById(R.id.rview)
         btSortAscending = findViewById(R.id.btSortAscending)
         btSortdescending = findViewById(R.id.btSortdescending)
+        btParseActivity = findViewById(R.id.btParseActivity)
         initList()
         initListener();
     }
     private fun initListener(){
         btSortAscending.setOnClickListener(this)
         btSortdescending.setOnClickListener(this)
+        btParseActivity.setOnClickListener(this)
     }
     private fun initList(){
          users = listOf<Users>(
@@ -59,6 +65,11 @@ class RecyclerviewDiffutilActivity : AppCompatActivity(), View.OnClickListener {
            }
            R.id.btSortdescending->{
              sortDescnding()
+           }
+           R.id.btParseActivity ->{
+               val intent = Intent(this,ParseSerializableActivity::class.java)
+               intent.putExtra("keyString", "Androidly String data")
+               startActivity(intent)
            }
        }
     }
