@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KotlinPresmissionn">
         <activity
+            android:name=".ui.LoginActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.ParseSerializableActivity"
             android:exported="false" />
         <activity
