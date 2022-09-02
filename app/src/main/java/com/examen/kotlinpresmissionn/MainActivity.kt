@@ -13,17 +13,22 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.examen.kotlinpresmissionn.ui.LoginActivity
+
 // Diffutil receyvlerview is sample code is adding..
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private val MY_PERMISSIONS_REQUEST_WRITE_FILE = 101
     private val MY_PERMISSIONS_REQUEST_CAMERA = 102
     private val TAG = "MainActivity"
     private lateinit var btNext:Button
+    private lateinit var btNextLogin:Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         btNext = findViewById(R.id.btNext)
+        btNextLogin = findViewById(R.id.btNextLogin)
         btNext.setOnClickListener(this)
+        btNextLogin.setOnClickListener(this)
         initPremission()
     }
 
@@ -83,6 +88,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             val intent = Intent(this,RecyclerviewDiffutilActivity::class.java)
             intent.putExtra("data","sample test")
             intent.putExtra("info","sample info test")
+            startActivity(intent)
+        }else if(view?.id==R.id.btNextLogin){
+            val intent = Intent(this,LoginActivity::class.java)
+            intent.putExtra("DATA","Intent data to pass the Login activity");
             startActivity(intent)
         }
     }
