@@ -32,7 +32,7 @@ class ParseSerializableActivity : AppCompatActivity(), View.OnClickListener {
         //parseable data object
         val stData: Student? = intent.getParcelableExtra<Student>("studentData")
         if (stData!=null){
-            tvParseData.text = "Name:"+stData?.name +"ID:"+stData?.id +"address:"+stData?.address +"phone:"+stData?.phone
+            tvParseData.text = "Name:"+ stData.name +"ID:"+ stData.id +"address:"+stData.address +"phone:"+stData.phone
         }
         // serializable data object
         val blog : Blog? = intent.getSerializableExtra("blogdata") as Blog?

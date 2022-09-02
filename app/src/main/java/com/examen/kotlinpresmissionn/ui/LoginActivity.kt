@@ -3,13 +3,13 @@ package com.examen.kotlinpresmissionn.ui
 import android.content.Context
 import android.content.IntentFilter
 import android.net.ConnectivityManager
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.examen.kotlinpresmissionn.R
 import com.examen.kotlinpresmissionn.model.login.UserLogin
@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRece
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         initView()
-        registerReceiver(ConnectivityReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
+        //registerReceiver(ConnectivityReceiver(), IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION))
     }
 
     override fun onNetworkConnectionChanged(isConnected: Boolean) {
@@ -52,20 +52,24 @@ class LoginActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRece
     }
     override fun onResume() {
         super.onResume()
-        ConnectivityReceiver.connectivityReceiverListener = this
+        //ConnectivityReceiver.connectivityReceiverListener = this
+    }
+    override fun onPause() {
+       // unregisterReceiver(ConnectivityReceiver())
+        super.onPause()
     }
 
     private fun initView() {
         etUserName = findViewById(R.id.etUserName)
         etPassword = findViewById(R.id.etPassword)
-        bt_Login = findViewById(R.id.btNextLogin)
+        bt_Login = findViewById(R.id.bt_Login)
         cont_login = findViewById(R.id.cont_login)
         bt_Login.setOnClickListener(this)
     }
 
     override fun onClick(view: View?) {
        when(view?.id){
-           R.id.btNextLogin ->{
+           R.id.bt_Login ->{
                   userName = etUserName.text.toString()
                   password = etPassword.text.toString()
 
@@ -73,15 +77,20 @@ class LoginActivity : AppCompatActivity(), ConnectivityReceiver.ConnectivityRece
                   val requestLogin = RetrofitInstance.getRetrofitInstance().create(ServiceAPIInterface::class.java)
                   GlobalScope.launch {
                      val userLogin = UserLogin(1, userName!!,password!!)
-                      val loginResponse = requestLogin.loginUser(userLogin)
+                      val loginResponse = requestLogin.loginUser(UserLogin(1, userName!!,
+                          password!!
+                      ))
                       if (loginResponse.isSuccessful && loginResponse.code()==200){
                           Log.d(TAG, "response of user: "+loginResponse.body().toString())
                       }
 
                   }
                   }else{
-                      val toast = Toast.makeText(this,"Please enter the required field!",Toast.LENGTH_LONG)
-                      toast.show()
+                      snackBar = Snackbar.make(this,cont_login,"Please enter the required field",Snackbar.LENGTH_SHORT)
+                      snackBar?.duration = BaseTransientBottomBar.LENGTH_INDEFINITE
+                      snackBar?.show()
+                     /* val toast = Toast.makeText(this,"Please enter the required field!",Toast.LENGTH_LONG)
+                      toast.show()*/
                   }
            }
        }

@@ -89,9 +89,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             intent.putExtra("data","sample test")
             intent.putExtra("info","sample info test")
             startActivity(intent)
-        }else if(view?.id==R.id.btNextLogin){
+        }
+        if(view?.id==R.id.btNextLogin){
             val intent = Intent(this,LoginActivity::class.java)
-            intent.putExtra("DATA","Intent data to pass the Login activity");
+           // intent.putExtra("DATA","Intent data to pass the Login activity");
             startActivity(intent)
         }
     }
